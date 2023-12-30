@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Java笔记 | hiki's blog</title><meta name="author" content="hiki"><meta name="copyright" content="hiki"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MapJava中遍历Map对象的4种方法：  1、通过Map.entrySet遍历key和value，在for-each循环中使用entries来遍历.推荐，尤其是容回量大时。  2、通过Map.keySet遍历key，通过键找答值value遍历（效率低）,普遍使用，二次取值。  3、如果只需要map中的键或者值，你可以通过Map.keySet或Map.values来实现遍历，而不是用entryS">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Java笔记 | hiki's blog</title><meta name="author" content="hiki"><meta name="copyright" content="hiki"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="MapJava中遍历Map对象的4种方法：  1、通过Map.entrySet遍历key和value，在for-each循环中使用entries来遍历.推荐，尤其是容回量大时。  2、通过Map.keySet遍历key，通过键找答值value遍历（效率低）,普遍使用，二次取值。  3、如果只需要map中的键或者值，你可以通过Map.keySet或Map.values来实现遍历，而不是用entryS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java笔记">
 <meta property="og:url" content="http://example.com/2022/06/27/Java%E7%AC%94%E8%AE%B0/index.html">
@@ -130,7 +130,7 @@
       win.activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
         }
       }
       const t = saveToLocal.get('theme')
