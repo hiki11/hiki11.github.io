@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>PC相关笔记</title>
+      <link href="/2025/08/12/PC%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/"/>
+      <url>/2025/08/12/PC%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="CPU后缀"><a href="#CPU后缀" class="headerlink" title="CPU后缀"></a>CPU后缀</h2><ol><li><strong>台式机处理器后缀：</strong><ul><li><code>+X</code>：至高性能处理器</li><li><code>+E</code>：嵌入式工程级处理器</li><li><code>+S</code>：低电压处理器</li><li><code>+K</code>：不锁倍频处理器</li><li><code>+T</code>：超低电压处理器</li><li><code>+P</code>：屏蔽集显处理器</li></ul></li><li><strong>笔记本处理器后缀：</strong><ul><li><code>+M</code>：标准电压处理器</li><li><code>+U</code>：低电压处理器</li><li><code>+H</code>：高电压且不可拆卸处理器</li><li><code>+X</code>：高性能处理器</li><li><code>+Q</code>：4核心至高性能处理器</li><li><code>+Y</code>：超低电压处理器</li><li><strong>组合后缀：</strong> 若后缀具有两个字母组合，其含义是相应字母代表含义的组合。</li></ul></li></ol><p><a href="https://www.zhihu.com/question/55353342/answer/144157155">CPU的后缀字母分别是什么意思？ - 灰坚果的回答 - 知乎</a></p><hr><h2 id="英伟达显卡驱动：DCH、GRD、SD驱动的区别"><a href="#英伟达显卡驱动：DCH、GRD、SD驱动的区别" class="headerlink" title="英伟达显卡驱动：DCH、GRD、SD驱动的区别"></a>英伟达显卡驱动：DCH、GRD、SD驱动的区别</h2><ol><li><strong>DCH驱动：</strong><ul><li>全称：Declarative Componentized Hardware supported apps（声明性组件化硬件支持应用）。</li><li>微软提出的Win10驱动程序新规范。</li><li><strong>特点：</strong><ul><li><strong>声明性 (D)：</strong> 仅用声明性INF指令安装驱动，无辅助安装程序或注册DLL功能。</li><li><strong>组件化 (C)：</strong> 特定版本&#x2F;OEM自定义项独立于基础驱动包，可单独更新。</li><li><strong>硬件支持应用 (H)：</strong> 驱动关联的用户界面（如控制面板）须打包为UWP应用（硬件支持应用&#x2F;HSA），通过微软商店分发&#x2F;更新。</li></ul></li><li>效果：DCH驱动包只含基础驱动，控制面板等需从商店安装。标准版驱动则包含所有组件。</li></ul></li><li><strong>GRD驱动 (Game Ready Driver)：</strong><ul><li>NVIDIA定义，官方宣称主要针对<strong>游戏</strong>进行优化。</li></ul></li><li><strong>SD驱动 (Studio Driver):</strong><ul><li>NVIDIA定义，官方宣称主要针对<strong>生产力应用</strong>（如PR, AE等）进行优化。</li></ul></li><li><strong>关键区别与选择：</strong><ul><li><strong>DCH vs 标准版：</strong> 仅在驱动包结构和分发方式不同（DCH需商店装控制面板）。<strong>功能特性和性能无区别。</strong> (部分笔记本可能只兼容DCH)。</li><li><strong>GRD vs SD：</strong> 实测在游戏和生产力软件中的<strong>性能差异极小，可忽略</strong>。选择任意一种皆可。</li><li><strong>组合：</strong> 共有四种驱动类型：标准GRD、标准SD、DCH GRD、DCH SD。根据上述分析，<strong>四者在性能和使用上基本无差异，可任选其一安装。</strong></li></ul></li></ol><p><a href="https://www.zhihu.com/question/444759667/answer/1733134687">有没有大神讲解一下英伟达显卡驱动，DCH、GRD、SD这些驱动到底有什么区别啊？ - cotton的回答 - 知乎</a></p><h2 id="AMD掉显卡驱动的解决方法"><a href="#AMD掉显卡驱动的解决方法" class="headerlink" title="AMD掉显卡驱动的解决方法"></a>AMD掉显卡驱动的解决方法</h2><p>先去官网下好DDU和AMD显卡驱动，然后开安全模式用DDU卸载原来的AMD显卡驱动，重启后安装新的AMD显卡驱动。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> PC </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PC </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CS2-Dust2-选位</title>
       <link href="/2025/08/09/CS2-Dust2-%E9%80%89%E4%BD%8D/"/>
       <url>/2025/08/09/CS2-Dust2-%E9%80%89%E4%BD%8D/</url>
