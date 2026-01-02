@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>C4D核心基础笔记 (一) 参数化对象与生成器</title>
+      <link href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+      <url>/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这一阶段的核心目标是掌握 <strong>“非破坏性工作流”</strong>：即在不破坏物体本质（不塌陷为多边形）的前提下，通过层级关系实现复杂的造型。</p><hr><h2 id="1-参数化对象-Parametric-Objects"><a href="#1-参数化对象-Parametric-Objects" class="headerlink" title="1. 参数化对象 (Parametric Objects)"></a>1. 参数化对象 (Parametric Objects)</h2><p><strong>定义：</strong> 软件内置的原始几何体（立方体、球体等）。在点击 <code>C</code> 键之前，它们只是由“数值”定义的数学模型。</p><ul><li><p><strong>核心参数：</strong></p></li><li><p><strong>尺寸 (Size)</strong>：基础长宽高。</p></li><li><p><strong>分段 (Segments)</strong>：最重要的参数！分段越多，表面越圆滑，但也越消耗电脑性能。</p></li><li><p><strong>圆角 (Fillet)</strong>：勾选后可以直接给立方体边缘增加倒角，捕捉真实的光影高光。</p></li><li><p><strong>💡 个人心得：</strong> 建模初期，分段数不要给太高。只有当你要用“变形器”去扭曲它时，才需要增加分段。</p></li></ul><hr><h2 id="2-父子级逻辑-The-Hierarchy"><a href="#2-父子级逻辑-The-Hierarchy" class="headerlink" title="2. 父子级逻辑 (The Hierarchy)"></a>2. 父子级逻辑 (The Hierarchy)</h2><p>在对象管理器（右上方窗口）中，物体的摆放顺序决定了它们的动作关系：</p><ul><li><strong>子随父动</strong>：将物体 A 拖到物体 B 之下，A 成为子级。移动 B，A 会跟着动；但移动 A，B 不动。</li><li><strong>坐标继承</strong>：子级的坐标是相对于父级的。如果子级坐标为 (0,0,0)，说明它正好在父级的中心。</li></ul><hr><h2 id="3-生成器-Generators"><a href="#3-生成器-Generators" class="headerlink" title="3. 生成器 (Generators)"></a>3. 生成器 (Generators)</h2><p><strong>逻辑：</strong> 生成器通常作为<strong>父级</strong>使用。它需要一个“样条线”或“对象”作为其子级才能工作。</p><h3 id="①-挤压-Extrude"><a href="#①-挤压-Extrude" class="headerlink" title="① 挤压 (Extrude)"></a>① 挤压 (Extrude)</h3><ul><li><strong>操作</strong>：<code>挤压</code> (父) &lt;—— <code>文字/样条</code> (子)。</li><li><strong>用途</strong>：最快制作 3D 字体、标志、薄片加厚。</li><li><strong>关键设置</strong>：</li><li><strong>偏移 (Offset)</strong>：控制厚度。</li><li><strong>封顶 (Caps)</strong>：控制边缘的圆角（倒角）。</li></ul><h3 id="②-扫描-Sweep"><a href="#②-扫描-Sweep" class="headerlink" title="② 扫描 (Sweep)"></a>② 扫描 (Sweep)</h3><ul><li><strong>操作</strong>：<code>扫描</code> (父) &lt;—— <code>截面样条</code> (子1) + <code>路径样条</code> (子2)。</li><li><strong>注意</strong>：对象栏里，<strong>截面在上，路径在下</strong>。</li><li><strong>用途</strong>：制作耳机线、管道、吸管、围栏。</li></ul><h3 id="③-旋转-Lathe"><a href="#③-旋转-Lathe" class="headerlink" title="③ 旋转 (Lathe)"></a>③ 旋转 (Lathe)</h3><ul><li><strong>操作</strong>：<code>旋转</code> (父) &lt;—— <code>半截剖面样条</code> (子)。</li><li><strong>用途</strong>：只要是轴对称的物体（花瓶、保龄球、杯子、盘子），画一半轮廓即可。</li></ul><h3 id="④-细分曲面-Subdivision-Surface"><a href="#④-细分曲面-Subdivision-Surface" class="headerlink" title="④ 细分曲面 (Subdivision Surface)"></a>④ 细分曲面 (Subdivision Surface)</h3><ul><li><strong>操作</strong>：<code>细分曲面</code> (父) &lt;—— <code>低模物体</code> (子)。</li><li><strong>用途</strong>：将有棱角的物体变圆滑。这是做角色、流体造型、高级产品建模的必经之路。</li></ul><hr><h2 id="4-变形器-Deformers"><a href="#4-变形器-Deformers" class="headerlink" title="4. 变形器 (Deformers)"></a>4. 变形器 (Deformers)</h2><p><strong>逻辑：</strong> 变形器通常作为<strong>子级</strong>使用，或者与物体处于<strong>同级（且在一个组里）</strong>。</p><ul><li><p><strong>紫色&#x2F;蓝色图标</strong>：如弯曲、扭曲、膨胀、FFD。</p></li><li><p><strong>快速对齐 (Shift 键)</strong>：</p></li><li><p>选中物体，按住 <strong>Shift + 点击变形器</strong>。</p></li><li><p><strong>效果</strong>：变形器会自动变成物体的子级，且大小自动匹配物体（这一步省去了大量手动缩放的时间）。</p></li><li><p><strong>关键点</strong>：变形器生效的前提是——<strong>被变形的物体必须有足够的分段！</strong> (如果没有分段，立方体无法弯曲)。</p></li></ul><hr><!-- ## 🛠 本阶段练习任务 (推荐练习)**目标：做一个带吸管的咖啡杯。**1. **杯身**：用【样条画笔】画出杯子的侧切面轮廓，放入【旋转】生成器。2. **把手**：画一个小圆圈和一个弧线路径，放入【扫描】生成器。3. **吸管**：用【圆柱】，配合【弯曲】变形器（按住 Shift 建立）。4. **杯盖**：用【圆盘】，调整参数做出层次感。 -->]]></content>
+      
+      
+      <categories>
+          
+          <category> 影视 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C4D </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>C4D核心基础笔记 (二) 多边形建模</title>
+      <link href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+      <url>/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这一阶段的核心目标是掌握 <strong>“非破坏性工作流”</strong>：即在不破坏物体本质（不塌陷为多边形）的前提下，通过层级关系实现复杂的造型。<br>这一章的核心只有三个词：<strong>点、线、面</strong>。</p><hr><h2 id="1-核心分水岭：C-键-Make-Editable"><a href="#1-核心分水岭：C-键-Make-Editable" class="headerlink" title="1. 核心分水岭：C 键 (Make Editable)"></a>1. 核心分水岭：<code>C</code> 键 (Make Editable)</h2><p><strong>定义：</strong> 将“参数化物体”塌陷为“多边形物体”。</p><ul><li><strong>代价：</strong> 一旦按下 <code>C</code> 键，你将失去修改半径、高度、分段等参数的权限。</li><li><strong>获得：</strong> 你获得了对每一个<strong>顶点(Point)</strong>、<strong>边(Edge)</strong>、<strong>多边形(Polygon)</strong> 的绝对控制权。</li><li><strong>⚠️ 避坑指南：</strong> 在按 <code>C</code> 之前，务必确认你的<strong>初始分段数</strong>。分段太少，模型没细节；分段太多，调整起来会让你抓狂。</li></ul><hr><h2 id="2-三大基础模式"><a href="#2-三大基础模式" class="headerlink" title="2. 三大基础模式"></a>2. 三大基础模式</h2><p>在左侧工具栏（或按快捷键 <code>Enter</code> 切换）：</p><ol><li><strong>点模式 (Points)</strong>：最基础的控制，决定形状的轮廓。</li><li><strong>边模式 (Edges)</strong>：用于控制结构的走向，也是“卡线”的关键。</li><li><strong>面模式 (Polygons)</strong>：用于挤压、造型，也是材质贴图的主要载体。</li></ol><hr><h2 id="3-最重要的建模命令-快捷键组合"><a href="#3-最重要的建模命令-快捷键组合" class="headerlink" title="3. 最重要的建模命令 (快捷键组合)"></a>3. 最重要的建模命令 (快捷键组合)</h2><p>多边形建模几乎全靠这几个命令：</p><h3 id="①-挤压-Extrude-——-M-T-或-D"><a href="#①-挤压-Extrude-——-M-T-或-D" class="headerlink" title="① 挤压 (Extrude) —— M ~ T 或 D"></a>① 挤压 (Extrude) —— <code>M ~ T</code> 或 <code>D</code></h3><ul><li><strong>功能</strong>：从选中的面或边“长”出新的部分。</li><li><strong>进阶技巧</strong>：按住 <strong><code>Ctrl</code> + 鼠标拖动坐标轴</strong>，可以直接实现快速挤压。</li></ul><h3 id="②-内部挤压-Inner-Extrude-——-M-W-或-I"><a href="#②-内部挤压-Inner-Extrude-——-M-W-或-I" class="headerlink" title="② 内部挤压 (Inner Extrude) —— M ~ W 或 I"></a>② 内部挤压 (Inner Extrude) —— <code>M ~ W</code> 或 <code>I</code></h3><ul><li><strong>功能</strong>：向面的内部缩放并产生新面（做窗框、凹槽的第一步）。</li></ul><h3 id="③-切刀-Knife-——-K-K-线性切-K-L-循环切"><a href="#③-切刀-Knife-——-K-K-线性切-K-L-循环切" class="headerlink" title="③ 切刀 (Knife) —— K ~ K (线性切) &#x2F; K ~ L (循环切)"></a>③ 切刀 (Knife) —— <code>K ~ K</code> (线性切) &#x2F; <code>K ~ L</code> (循环切)</h3><ul><li><strong>功能</strong>：在模型上增加线。</li><li><strong>循环切 (<code>K ~ L</code>)</strong>：这是最常用的，绕着模型切一圈。</li><li><strong>用途</strong>：增加局部细节，或者在细分曲面下“卡边”。</li></ul><h3 id="④-倒角-Bevel-——-M-S"><a href="#④-倒角-Bevel-——-M-S" class="headerlink" title="④ 倒角 (Bevel) —— M ~ S"></a>④ 倒角 (Bevel) —— <code>M ~ S</code></h3><ul><li><strong>功能</strong>：把一条锋利的边变成斜面或圆角。</li><li><strong>真实感秘诀</strong>：现实世界中没有绝对 90 度的直角。给硬边一个小小的倒角，能让它在渲染时产生<strong>高光</strong>。</li></ul><h3 id="⑤-焊接-Weld-——-M-Q"><a href="#⑤-焊接-Weld-——-M-Q" class="headerlink" title="⑤ 焊接 (Weld) —— M ~ Q"></a>⑤ 焊接 (Weld) —— <code>M ~ Q</code></h3><ul><li><strong>功能</strong>：把两个点合并成一个点。常用于清理多余的碎点。</li></ul><hr><h2 id="4-细分曲面-Subdivision-Surface"><a href="#4-细分曲面-Subdivision-Surface" class="headerlink" title="4. 细分曲面 (Subdivision Surface)"></a>4. 细分曲面 (Subdivision Surface)</h2><p>这是建模时的“美颜滤镜”。</p><ul><li><strong>原理</strong>：它会将你的方块模型平滑化。</li><li><strong>卡线 (Support Loops)</strong>：</li><li>如果你直接给立方体加细分，它会变成球。</li><li>如果你在边缘处切两根很近的线（卡线），细分后它就会保持硬朗的转角。</li><li><strong>口诀：线越近，边越硬。</strong></li></ul><hr><h2 id="5-布线思维-Topography"><a href="#5-布线思维-Topography" class="headerlink" title="5. 布线思维 (Topography)"></a>5. 布线思维 (Topography)</h2><p>一定要记下这两点：</p><ol><li><strong>四边面 (Quads)</strong>：尽量让模型所有的面都是四条边。四边面在变形和细分时最稳定。</li><li><strong>拒绝三角面&#x2F;多边面 (N-Gons)</strong>：超过 4 条边的面叫 N-Gon，渲染时极易出现黑斑或奇怪的折痕。</li></ol><hr><!-- ## 🛠 本阶段练习任务**目标：做一个简约风格的现代沙发。**1. **底座**：创建一个立方体，按 `C`，进入面模式，利用`内部挤压`和`挤压`做出凹陷。2. **靠背**：选择背后的面向上`挤压`。3. **软化**：将整个物体放入`细分曲面`下。4. **卡线**：此时你会得到一个像馒头一样的沙发。使用`循环切刀 (K~L)`，在沙发的边缘加线，直到它看起来既方正又圆润。---### 💡 个人感悟：多边形建模其实就是**“推、拉、切”**。不要被复杂的模型吓到，再复杂的角色或赛博朋克城市，拆解到最后都是一个个点的位移。]]></content>
+      
+      
+      <categories>
+          
+          <category> 影视 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C4D </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C4D基础笔记</title>
       <link href="/2026/01/02/C4D%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/"/>
       <url>/2026/01/02/C4D%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/</url>

@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>C4D核心基础笔记 (一) 参数化对象与生成器 | hiki's blog</title><meta name="author" content="hiki"><meta name="copyright" content="hiki"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="前言这一阶段的核心目标是掌握 “非破坏性工作流”：即在不破坏物体本质（不塌陷为多边形）的前提下，通过层级关系实现复杂的造型。  1. 参数化对象 (Parametric Objects)定义： 软件内置的原始几何体（立方体、球体等）。在点击 C 键之前，它们只是由“数值”定义的数学模型。  核心参数：  尺寸 (Size)：基础长宽高。  分段 (Segments)：最重要的参数！分段越多，表面越">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C4D核心基础笔记 (一) 参数化对象与生成器">
+<meta property="og:url" content="http://example.com/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="hiki&#39;s blog">
+<meta property="og:description" content="前言这一阶段的核心目标是掌握 “非破坏性工作流”：即在不破坏物体本质（不塌陷为多边形）的前提下，通过层级关系实现复杂的造型。  1. 参数化对象 (Parametric Objects)定义： 软件内置的原始几何体（立方体、球体等）。在点击 C 键之前，它们只是由“数值”定义的数学模型。  核心参数：  尺寸 (Size)：基础长宽高。  分段 (Segments)：最重要的参数！分段越多，表面越">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/cover/C4D-Tutorial_cover.png">
+<meta property="article:published_time" content="2026-01-02T09:30:24.000Z">
+<meta property="article:modified_time" content="2026-01-02T12:29:43.949Z">
+<meta property="article:author" content="hiki">
+<meta property="article:tag" content="C4D">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/cover/C4D-Tutorial_cover.png"><link rel="shortcut icon" href="/images/favicon.png"><link rel="canonical" href="http://example.com/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C4D核心基础笔记 (一) 参数化对象与生成器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-01-02 20:29:43'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> 编程笔记</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Java"><i class="fa-fw fa-solid fa-mug-hot"></i><span> Java</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> CS2</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/%E9%81%93%E5%85%B7"><i class="fa-fw fa-solid fa-bomb"></i><span> 道具</span></a></li><li><a class="site-page child" href="/tags/cfg"><i class="fa-fw fa-solid fa-file"></i><span> CFG</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/../images/cover/C4D-Tutorial_cover.png')"><nav id="nav"><span id="blog-info"><a href="/" title="hiki's blog"><span class="site-name">hiki's blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> 编程笔记</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Java"><i class="fa-fw fa-solid fa-mug-hot"></i><span> Java</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> CS2</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/%E9%81%93%E5%85%B7"><i class="fa-fw fa-solid fa-bomb"></i><span> 道具</span></a></li><li><a class="site-page child" href="/tags/cfg"><i class="fa-fw fa-solid fa-file"></i><span> CFG</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">C4D核心基础笔记 (一) 参数化对象与生成器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-02T09:30:24.000Z" title="发表于 2026-01-02 17:30:24">2026-01-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-02T12:29:43.949Z" title="更新于 2026-01-02 20:29:43">2026-01-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BD%B1%E8%A7%86/">影视</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这一阶段的核心目标是掌握 <strong>“非破坏性工作流”</strong>：即在不破坏物体本质（不塌陷为多边形）的前提下，通过层级关系实现复杂的造型。</p>
+<hr>
+<h2 id="1-参数化对象-Parametric-Objects"><a href="#1-参数化对象-Parametric-Objects" class="headerlink" title="1. 参数化对象 (Parametric Objects)"></a>1. 参数化对象 (Parametric Objects)</h2><p><strong>定义：</strong> 软件内置的原始几何体（立方体、球体等）。在点击 <code>C</code> 键之前，它们只是由“数值”定义的数学模型。</p>
+<ul>
+<li><p><strong>核心参数：</strong></p>
+</li>
+<li><p><strong>尺寸 (Size)</strong>：基础长宽高。</p>
+</li>
+<li><p><strong>分段 (Segments)</strong>：最重要的参数！分段越多，表面越圆滑，但也越消耗电脑性能。</p>
+</li>
+<li><p><strong>圆角 (Fillet)</strong>：勾选后可以直接给立方体边缘增加倒角，捕捉真实的光影高光。</p>
+</li>
+<li><p><strong>💡 个人心得：</strong> 建模初期，分段数不要给太高。只有当你要用“变形器”去扭曲它时，才需要增加分段。</p>
+</li>
+</ul>
+<hr>
+<h2 id="2-父子级逻辑-The-Hierarchy"><a href="#2-父子级逻辑-The-Hierarchy" class="headerlink" title="2. 父子级逻辑 (The Hierarchy)"></a>2. 父子级逻辑 (The Hierarchy)</h2><p>在对象管理器（右上方窗口）中，物体的摆放顺序决定了它们的动作关系：</p>
+<ul>
+<li><strong>子随父动</strong>：将物体 A 拖到物体 B 之下，A 成为子级。移动 B，A 会跟着动；但移动 A，B 不动。</li>
+<li><strong>坐标继承</strong>：子级的坐标是相对于父级的。如果子级坐标为 (0,0,0)，说明它正好在父级的中心。</li>
+</ul>
+<hr>
+<h2 id="3-生成器-Generators"><a href="#3-生成器-Generators" class="headerlink" title="3. 生成器 (Generators)"></a>3. 生成器 (Generators)</h2><p><strong>逻辑：</strong> 生成器通常作为<strong>父级</strong>使用。它需要一个“样条线”或“对象”作为其子级才能工作。</p>
+<h3 id="①-挤压-Extrude"><a href="#①-挤压-Extrude" class="headerlink" title="① 挤压 (Extrude)"></a>① 挤压 (Extrude)</h3><ul>
+<li><strong>操作</strong>：<code>挤压</code> (父) &lt;—— <code>文字/样条</code> (子)。</li>
+<li><strong>用途</strong>：最快制作 3D 字体、标志、薄片加厚。</li>
+<li><strong>关键设置</strong>：</li>
+<li><strong>偏移 (Offset)</strong>：控制厚度。</li>
+<li><strong>封顶 (Caps)</strong>：控制边缘的圆角（倒角）。</li>
+</ul>
+<h3 id="②-扫描-Sweep"><a href="#②-扫描-Sweep" class="headerlink" title="② 扫描 (Sweep)"></a>② 扫描 (Sweep)</h3><ul>
+<li><strong>操作</strong>：<code>扫描</code> (父) &lt;—— <code>截面样条</code> (子1) + <code>路径样条</code> (子2)。</li>
+<li><strong>注意</strong>：对象栏里，<strong>截面在上，路径在下</strong>。</li>
+<li><strong>用途</strong>：制作耳机线、管道、吸管、围栏。</li>
+</ul>
+<h3 id="③-旋转-Lathe"><a href="#③-旋转-Lathe" class="headerlink" title="③ 旋转 (Lathe)"></a>③ 旋转 (Lathe)</h3><ul>
+<li><strong>操作</strong>：<code>旋转</code> (父) &lt;—— <code>半截剖面样条</code> (子)。</li>
+<li><strong>用途</strong>：只要是轴对称的物体（花瓶、保龄球、杯子、盘子），画一半轮廓即可。</li>
+</ul>
+<h3 id="④-细分曲面-Subdivision-Surface"><a href="#④-细分曲面-Subdivision-Surface" class="headerlink" title="④ 细分曲面 (Subdivision Surface)"></a>④ 细分曲面 (Subdivision Surface)</h3><ul>
+<li><strong>操作</strong>：<code>细分曲面</code> (父) &lt;—— <code>低模物体</code> (子)。</li>
+<li><strong>用途</strong>：将有棱角的物体变圆滑。这是做角色、流体造型、高级产品建模的必经之路。</li>
+</ul>
+<hr>
+<h2 id="4-变形器-Deformers"><a href="#4-变形器-Deformers" class="headerlink" title="4. 变形器 (Deformers)"></a>4. 变形器 (Deformers)</h2><p><strong>逻辑：</strong> 变形器通常作为<strong>子级</strong>使用，或者与物体处于<strong>同级（且在一个组里）</strong>。</p>
+<ul>
+<li><p><strong>紫色&#x2F;蓝色图标</strong>：如弯曲、扭曲、膨胀、FFD。</p>
+</li>
+<li><p><strong>快速对齐 (Shift 键)</strong>：</p>
+</li>
+<li><p>选中物体，按住 <strong>Shift + 点击变形器</strong>。</p>
+</li>
+<li><p><strong>效果</strong>：变形器会自动变成物体的子级，且大小自动匹配物体（这一步省去了大量手动缩放的时间）。</p>
+</li>
+<li><p><strong>关键点</strong>：变形器生效的前提是——<strong>被变形的物体必须有足够的分段！</strong> (如果没有分段，立方体无法弯曲)。</p>
+</li>
+</ul>
+<hr>
+<!-- ## 🛠 本阶段练习任务 (推荐练习)
+
+**目标：做一个带吸管的咖啡杯。**
+
+1. **杯身**：用【样条画笔】画出杯子的侧切面轮廓，放入【旋转】生成器。
+2. **把手**：画一个小圆圈和一个弧线路径，放入【扫描】生成器。
+3. **吸管**：用【圆柱】，配合【弯曲】变形器（按住 Shift 建立）。
+4. **杯盖**：用【圆盘】，调整参数做出层次感。 --></article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C4D/">C4D</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" title="C4D核心基础笔记 (二) 多边形建模"><img class="cover" src="/../images/cover/C4D-Tutorial_cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">C4D核心基础笔记 (二) 多边形建模</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2025/05/20/%E3%80%8A%E5%81%9AC4D%20Cinema%204D%E7%94%B5%E5%95%86%E8%A7%86%E8%A7%89%E8%AE%BE%E8%AE%A1%E6%95%99%E7%A8%8B%E3%80%8B%E7%AC%94%E8%AE%B0/" title="《做C4D Cinema 4D电商视觉设计教程》笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-20</div><div class="title">《做C4D Cinema 4D电商视觉设计教程》笔记</div></div></a></div><div><a href="/2026/01/02/C4D%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" title="C4D基础笔记"><img class="cover" src="/../images/cover/C4D-Tutorial_cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-02</div><div class="title">C4D基础笔记</div></div></a></div><div><a href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" title="C4D核心基础笔记 (二) 多边形建模"><img class="cover" src="/../images/cover/C4D-Tutorial_cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-02</div><div class="title">C4D核心基础笔记 (二) 多边形建模</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">hiki</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8F%82%E6%95%B0%E5%8C%96%E5%AF%B9%E8%B1%A1-Parametric-Objects"><span class="toc-number">2.</span> <span class="toc-text">1. 参数化对象 (Parametric Objects)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%88%B6%E5%AD%90%E7%BA%A7%E9%80%BB%E8%BE%91-The-Hierarchy"><span class="toc-number">3.</span> <span class="toc-text">2. 父子级逻辑 (The Hierarchy)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%94%9F%E6%88%90%E5%99%A8-Generators"><span class="toc-number">4.</span> <span class="toc-text">3. 生成器 (Generators)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A0-%E6%8C%A4%E5%8E%8B-Extrude"><span class="toc-number">4.1.</span> <span class="toc-text">① 挤压 (Extrude)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A1-%E6%89%AB%E6%8F%8F-Sweep"><span class="toc-number">4.2.</span> <span class="toc-text">② 扫描 (Sweep)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A2-%E6%97%8B%E8%BD%AC-Lathe"><span class="toc-number">4.3.</span> <span class="toc-text">③ 旋转 (Lathe)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A3-%E7%BB%86%E5%88%86%E6%9B%B2%E9%9D%A2-Subdivision-Surface"><span class="toc-number">4.4.</span> <span class="toc-text">④ 细分曲面 (Subdivision Surface)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%8F%98%E5%BD%A2%E5%99%A8-Deformers"><span class="toc-number">5.</span> <span class="toc-text">4. 变形器 (Deformers)</span></a></li></ol></div></div><div class="card-widget card-post-series"><div class="item-headline"><i class="fa-solid fa-layer-group"></i><span>系列文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" title="C4D核心基础笔记 (一) 参数化对象与生成器"><img src="/../images/cover/C4D-Tutorial_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C4D核心基础笔记 (一) 参数化对象与生成器"></a><div class="content"><a class="title" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" title="C4D核心基础笔记 (一) 参数化对象与生成器">C4D核心基础笔记 (一) 参数化对象与生成器</a><time datetime="2026-01-02T09:30:24.000Z" title="发表于 2026-01-02 17:30:24">2026-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" title="C4D核心基础笔记 (二) 多边形建模"><img src="/../images/cover/C4D-Tutorial_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C4D核心基础笔记 (二) 多边形建模"></a><div class="content"><a class="title" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" title="C4D核心基础笔记 (二) 多边形建模">C4D核心基础笔记 (二) 多边形建模</a><time datetime="2026-01-02T09:30:24.000Z" title="发表于 2026-01-02 17:30:24">2026-01-02</time></div></div></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" title="C4D核心基础笔记 (一) 参数化对象与生成器"><img src="/../images/cover/C4D-Tutorial_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C4D核心基础笔记 (一) 参数化对象与生成器"/></a><div class="content"><a class="title" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" title="C4D核心基础笔记 (一) 参数化对象与生成器">C4D核心基础笔记 (一) 参数化对象与生成器</a><time datetime="2026-01-02T09:30:24.000Z" title="发表于 2026-01-02 17:30:24">2026-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" title="C4D核心基础笔记 (二) 多边形建模"><img src="/../images/cover/C4D-Tutorial_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C4D核心基础笔记 (二) 多边形建模"/></a><div class="content"><a class="title" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" title="C4D核心基础笔记 (二) 多边形建模">C4D核心基础笔记 (二) 多边形建模</a><time datetime="2026-01-02T09:30:24.000Z" title="发表于 2026-01-02 17:30:24">2026-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/02/C4D%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" title="C4D基础笔记"><img src="/../images/cover/C4D-Tutorial_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C4D基础笔记"/></a><div class="content"><a class="title" href="/2026/01/02/C4D%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" title="C4D基础笔记">C4D基础笔记</a><time datetime="2026-01-01T16:19:19.000Z" title="发表于 2026-01-02 00:19:19">2026-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/14/CS2%E9%98%B2%E5%AE%88%E9%80%89%E4%BD%8D/" title="CS2 防守选位"><img src="/../images/cover/CS2-%E9%98%B2%E5%AE%88.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CS2 防守选位"/></a><div class="content"><a class="title" href="/2025/12/14/CS2%E9%98%B2%E5%AE%88%E9%80%89%E4%BD%8D/" title="CS2 防守选位">CS2 防守选位</a><time datetime="2025-12-13T16:01:52.000Z" title="发表于 2025-12-14 00:01:52">2025-12-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/13/CS2-Inferno-%E9%81%93%E5%85%B7/" title="CS2-Inferno-道具"><img src="/../images/cover/CS2-Inferno_cover.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CS2-Inferno-道具"/></a><div class="content"><a class="title" href="/2025/08/13/CS2-Inferno-%E9%81%93%E5%85%B7/" title="CS2-Inferno-道具">CS2-Inferno-道具</a><time datetime="2025-08-12T16:20:48.000Z" title="发表于 2025-08-13 00:20:48">2025-08-13</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By hiki</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="40,170,240" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
