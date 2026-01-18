@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>C4D核心基础笔记 (五) 动画</title>
+      <link href="/2026/01/18/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/"/>
+      <url>/2026/01/18/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h2 id="1-关键帧-Keyframes-的底层逻辑"><a href="#1-关键帧-Keyframes-的底层逻辑" class="headerlink" title="1. 关键帧 (Keyframes) 的底层逻辑"></a>1. 关键帧 (Keyframes) 的底层逻辑</h2><p>在 C4D 中，几乎任何参数（数值、颜色、勾选框）都可以打关键帧。</p><ul><li><strong>打帧方式</strong>：</li><li><strong>手动点击</strong>：点击属性左侧的小圆圈（空心→实心红：已打帧；黄色：数值已变但未记录）。</li><li>**快捷键 <code>F9**</code>：记录当前选中物体的所有 PSR（位移、缩放、旋转）参数。</li><li><strong>自动关键帧 (Auto Keying)</strong>：那个大大的红色圆圈按钮。开启后，你动，它就记。<strong>（记得调完关掉，否则会产生大量多余帧）</strong></li></ul><h2 id="2-动画曲线-F-Curve"><a href="#2-动画曲线-F-Curve" class="headerlink" title="2. 动画曲线 (F-Curve)"></a>2. 动画曲线 (F-Curve)</h2><p><strong>核心理念：</strong> 世界上没有任何物体是瞬间加速并瞬间停止的（除了光）。</p><ul><li><strong>进入方式</strong>：在时间轴窗口切换到“函数曲线”模式，或按 <code>Shift + F3</code>。</li><li><strong>三种基本曲线形态</strong>：</li></ul><ol><li><strong>线性 (Linear)</strong>：匀速运动（看起来很假，适合传送带或背景循环）。</li><li><strong>缓入缓出 (Spline&#x2F;Easy Ease)</strong>：S型曲线。开始慢，中间快，结束慢（最符合现实物理逻辑）。</li><li><strong>台阶 (Step)</strong>：瞬间跳变（适合做定格动画效果）。</li></ol><ul><li><strong>操作点</strong>：通过拉伸曲线的<strong>杠杆 (Handles)</strong>，你可以控制加速的时间点。</li></ul><h2 id="3-动画的法则：预备、跟进与重叠"><a href="#3-动画的法则：预备、跟进与重叠" class="headerlink" title="3. 动画的法则：预备、跟进与重叠"></a>3. 动画的法则：预备、跟进与重叠</h2><ul><li><strong>预备动作 (Anticipation)</strong>：球要向上弹之前，先向下压扁一点。</li><li><strong>超越与回弹 (Overshoot)</strong>：物体移动到目标点后，先超过一点点再弹回来。这能表现出物体的<strong>惯性</strong>。</li><li><strong>重叠 (Overlapping)</strong>：如果一个机器人走动，手和脚的动画不要同时开始，错开几帧（Offset），会显得更自然。</li></ul><h2 id="4-动力学动画-Simulation-Animation"><a href="#4-动力学动画-Simulation-Animation" class="headerlink" title="4. 动力学动画 (Simulation Animation)"></a>4. 动力学动画 (Simulation Animation)</h2><p>有时候我们不需要手动打帧，而是让电脑计算：</p><ul><li><strong>刚体 (Rigid Body)</strong>：物体有质量，会受重力掉落并互相碰撞。</li><li><strong>柔体 (Soft Body)</strong>：像果冻或充满气的气球，碰撞时会产生形变。</li><li><strong>烘焙 (Baking)</strong>：当你对模拟出来的效果满意时，可以将其“烘焙”成关键帧，这样渲染时更稳定，也方便手动微调。</li></ul><hr><h2 id="5-摄像机动画-Camera-Animation"><a href="#5-摄像机动画-Camera-Animation" class="headerlink" title="5. 摄像机动画 (Camera Animation)"></a>5. 摄像机动画 (Camera Animation)</h2><p><strong>电影感的关键在于镜头：</strong></p><ul><li><strong>摄像机标配</strong>：不要直接动视口，建立一个【摄像机对象】并点击它右侧的小方块进入视角。</li><li><strong>目标摄像机 (Target Camera)</strong>：给相机加一个目标标签指向物体。无论相机怎么移动，它永远盯着物体看。</li><li><strong>振动标签 (Vibrate Tag)</strong>：给相机加个轻微的振动。不要死板的静止，一点点手动DV的感觉会让画面更真实。</li></ul><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> 影视 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C4D </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>C4D核心基础笔记 (四) 材质、灯光与渲染</title>
+      <link href="/2026/01/18/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
+      <url>/2026/01/18/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h2 id="1-灯光：不仅是为了看清，更是为了灵魂"><a href="#1-灯光：不仅是为了看清，更是为了灵魂" class="headerlink" title="1. 灯光：不仅是为了看清，更是为了灵魂"></a>1. 灯光：不仅是为了看清，更是为了灵魂</h2><p>在 3D 世界里，没有灯光就是一片漆黑。</p><ul><li><strong>三点布光法 (Classic 3-Point Lighting)</strong>：</li></ul><ol><li><strong>主灯 (Key Light)</strong>：最强的光源，决定物体的基本形状和阴影方向。</li><li><strong>补灯 (Fill Light)</strong>：放在主灯对面，亮度较低，用来照亮阴影区域，不至于让背光处全黑。</li><li><strong>轮廓灯 (Rim&#x2F;Back Light)</strong>：放在物体后方，勾勒出物体的边缘，将物体从背景中“抠”出来。</li></ol><ul><li><strong>HDR 环境 (Sky + HDRI)</strong>：给场景加一个“天空”，并赋予一个 HDRI 贴图。它能提供 360 度的真实环境反射（比如金属表面的城市倒影）。</li><li><strong>区域灯 (Area Light)</strong>：进阶最常用的灯光类型，模拟现实中的柔光箱。</li></ul><hr><h2 id="2-材质通道：拆解质感的成分"><a href="#2-材质通道：拆解质感的成分" class="headerlink" title="2. 材质通道：拆解质感的成分"></a>2. 材质通道：拆解质感的成分</h2><p>在 C4D 原生材质球中，每一个标签页代表一种物理属性：</p><ul><li><p><strong>颜色 (Color)</strong>：物体的固有色。</p></li><li><p><strong>反射 (Reflectance)</strong>：最重要的频道。</p></li><li><p><strong>粗糙度 (Roughness)</strong>：0% 是镜子，100% 是磨砂。</p></li><li><p><strong>菲涅尔 (Fresnel)</strong>：真实感的核心。它决定了你观察物体的角度不同，反射强度也不同（想想湖面，远看反光强，近看能看到水底）。</p></li><li><p><strong>凹凸 (Bump) vs 法线 (Normal)</strong>：</p></li><li><p>都是“欺骗”眼睛的方法。不增加模型面数，却能做出皮肤毛孔、拉丝金属的质感。</p></li><li><p><strong>法线</strong>效果比凹凸更真实，支持光影变化。</p></li><li><p><strong>置换 (Displacement)</strong>：真正改变模型的几何形状。用于做崎岖不平的山脉或严重的磨损。需要模型有足够多的面数。</p></li></ul><hr><h2 id="3-渲染器：“冲洗相机”"><a href="#3-渲染器：“冲洗相机”" class="headerlink" title="3. 渲染器：“冲洗相机”"></a>3. 渲染器：“冲洗相机”</h2><ul><li><strong>标准&#x2F;物理渲染器 (Standard&#x2F;Physical)</strong>：C4D 自带。稳定，但慢，且很难做出顶级写实效果。</li><li><strong>主流第三方渲染器 (GPU Rendering)</strong>：</li><li><strong>Octane (OC)</strong>：上手最快，出图漂亮，深受电商、美妆设计喜爱。</li><li><strong>Redshift (RS)</strong>：速度极快，适合大场景和复杂动画，目前是行业主流。</li><li><strong>Arnold</strong>：电影级画质，光影极其细腻，但速度相对较慢。</li></ul><hr><h2 id="4-节点式材质-Node-Based-Shaders"><a href="#4-节点式材质-Node-Based-Shaders" class="headerlink" title="4. 节点式材质 (Node-Based Shaders)"></a>4. 节点式材质 (Node-Based Shaders)</h2><ul><li><strong>逻辑</strong>：通过线把“纹理、噪波、混合、颜色”连在一起。</li><li><strong>优势</strong>：极其灵活。可以用一张“脏迹贴图”作为蒙版，让物体的边缘生锈，而中间保持干净。</li></ul><hr><h2 id="5-全局光照-GI-与-环境吸收-AO"><a href="#5-全局光照-GI-与-环境吸收-AO" class="headerlink" title="5. 全局光照 (GI) 与 环境吸收 (AO)"></a>5. 全局光照 (GI) 与 环境吸收 (AO)</h2><ul><li><strong>全局光照 (Global Illumination)</strong>：模拟光线的二次跳跃。光照到红墙上，反射出的红光会微微照亮地板。开启它，画面瞬间真实。</li><li><strong>环境吸收 (Ambient Occlusion)</strong>：在物体交接处产生“阴影缝隙”。没有它，物体看起来会像漂浮在空中。</li></ul><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> 影视 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> C4D </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>C4D核心基础笔记 (一) 参数化对象与生成器</title>
       <link href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
       <url>/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</url>
@@ -189,7 +239,7 @@
       <link href="/2025/08/09/CS2-Dust2-%E9%80%89%E4%BD%8D/"/>
       <url>/2025/08/09/CS2-Dust2-%E9%80%89%E4%BD%8D/</url>
       
-        <content type="html"><![CDATA[<h2 id="B点站位"><a href="#B点站位" class="headerlink" title="B点站位"></a>B点站位</h2><h3 id="B2架B1-非预瞄位"><a href="#B2架B1-非预瞄位" class="headerlink" title="B2架B1 非预瞄位"></a>B2架B1 非预瞄位</h3><div class="tabs" id=""><ul class="nav-tabs"><button type="button" class="tab  active" data-href="-1">站位</button><button type="button" class="tab " data-href="-2">敌方视角</button></ul><div class="tab-contents"><div class="tab-item-content active" id="-1"><p><img src="/../images/post/CS2-Dust2-%E9%80%89%E4%BD%8D/1754710476566.png" alt="1754710476566"></p></div><div class="tab-item-content" id="-2"><p><img src="/../images/post/CS2-Dust2-%E9%80%89%E4%BD%8D/1754710531770.png" alt="1754710531770"></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div><p><a href="https://www.bilibili.com/video/BV1Sx8JzwEiX">分享一个沙二 B2架B1的 小技巧</a></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="A点"><a href="#A点" class="headerlink" title="A点"></a>A点</h2><h3 id="A大"><a href="#A大" class="headerlink" title="A大"></a>A大</h3><h4 id="非优势位置"><a href="#非优势位置" class="headerlink" title="非优势位置"></a>非优势位置</h4><p>过点拉出来的时候，会有影子<br><img src="/../images/post/CS2-Dust2-%E9%80%89%E4%BD%8D/1768751497948.jpg" alt="1768751497948"></p><p>A大拉出来也是<br><img src="/../images/post/CS2-Dust2-%E9%80%89%E4%BD%8D/1768751561051.jpg" alt="1768751561051"></p><p>但是双倍镜的时候，不会渲染影子<br><img src="/../images/post/CS2-Dust2-%E9%80%89%E4%BD%8D/1768751590283.jpg" alt="1768751590283"></p><h3 id="A小"><a href="#A小" class="headerlink" title="A小"></a>A小</h3><p>近点拉出来会有影子<br><img src="/../images/post/CS2-Dust2-%E9%80%89%E4%BD%8D/1768751636206.jpg" alt="1768751636206"><br>最好站远点拉<br><img src="/../images/post/CS2-Dust2-%E9%80%89%E4%BD%8D/1768751650742.jpg" alt="1768751650742"></p><h2 id="B点站位"><a href="#B点站位" class="headerlink" title="B点站位"></a>B点站位</h2><h3 id="B2架B1-非预瞄位"><a href="#B2架B1-非预瞄位" class="headerlink" title="B2架B1 非预瞄位"></a>B2架B1 非预瞄位</h3><div class="tabs" id=""><ul class="nav-tabs"><button type="button" class="tab  active" data-href="-1">站位</button><button type="button" class="tab " data-href="-2">敌方视角</button></ul><div class="tab-contents"><div class="tab-item-content active" id="-1"><p><img src="/../images/post/CS2-Dust2-%E9%80%89%E4%BD%8D/1754710476566.png" alt="1754710476566"></p></div><div class="tab-item-content" id="-2"><p><img src="/../images/post/CS2-Dust2-%E9%80%89%E4%BD%8D/1754710531770.png" alt="1754710531770"></p></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div><p><a href="https://www.bilibili.com/video/BV1Sx8JzwEiX">分享一个沙二 B2架B1的 小技巧</a></p>]]></content>
       
       
       <categories>

@@ -1,0 +1,208 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>C4D核心基础笔记 (四) 材质、灯光与渲染 | hiki's blog</title><meta name="author" content="hiki"><meta name="copyright" content="hiki"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="1. 灯光：不仅是为了看清，更是为了灵魂在 3D 世界里，没有灯光就是一片漆黑。  三点布光法 (Classic 3-Point Lighting)：   主灯 (Key Light)：最强的光源，决定物体的基本形状和阴影方向。 补灯 (Fill Light)：放在主灯对面，亮度较低，用来照亮阴影区域，不至于让背光处全黑。 轮廓灯 (Rim&#x2F;Back Light)：放在物体后方，勾勒出物">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C4D核心基础笔记 (四) 材质、灯光与渲染">
+<meta property="og:url" content="http://example.com/2026/01/18/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/index.html">
+<meta property="og:site_name" content="hiki&#39;s blog">
+<meta property="og:description" content="1. 灯光：不仅是为了看清，更是为了灵魂在 3D 世界里，没有灯光就是一片漆黑。  三点布光法 (Classic 3-Point Lighting)：   主灯 (Key Light)：最强的光源，决定物体的基本形状和阴影方向。 补灯 (Fill Light)：放在主灯对面，亮度较低，用来照亮阴影区域，不至于让背光处全黑。 轮廓灯 (Rim&#x2F;Back Light)：放在物体后方，勾勒出物">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/cover/C4D-Tutorial_cover.png">
+<meta property="article:published_time" content="2026-01-18T15:44:24.000Z">
+<meta property="article:modified_time" content="2026-01-18T15:44:34.558Z">
+<meta property="article:author" content="hiki">
+<meta property="article:tag" content="C4D">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/cover/C4D-Tutorial_cover.png"><link rel="shortcut icon" href="/images/favicon.png"><link rel="canonical" href="http://example.com/2026/01/18/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C4D核心基础笔记 (四) 材质、灯光与渲染',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-01-18 23:44:34'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> 编程笔记</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Java"><i class="fa-fw fa-solid fa-mug-hot"></i><span> Java</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> CS2</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/%E9%81%93%E5%85%B7"><i class="fa-fw fa-solid fa-bomb"></i><span> 道具</span></a></li><li><a class="site-page child" href="/tags/cfg"><i class="fa-fw fa-solid fa-file"></i><span> CFG</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/../images/cover/C4D-Tutorial_cover.png')"><nav id="nav"><span id="blog-info"><a href="/" title="hiki's blog"><span class="site-name">hiki's blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> 编程笔记</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/Java"><i class="fa-fw fa-solid fa-mug-hot"></i><span> Java</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><span> CS2</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/%E9%81%93%E5%85%B7"><i class="fa-fw fa-solid fa-bomb"></i><span> 道具</span></a></li><li><a class="site-page child" href="/tags/cfg"><i class="fa-fw fa-solid fa-file"></i><span> CFG</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">C4D核心基础笔记 (四) 材质、灯光与渲染</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-18T15:44:24.000Z" title="发表于 2026-01-18 23:44:24">2026-01-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-18T15:44:34.558Z" title="更新于 2026-01-18 23:44:34">2026-01-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BD%B1%E8%A7%86/">影视</a></span></div><div class="meta-secondline"></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-灯光：不仅是为了看清，更是为了灵魂"><a href="#1-灯光：不仅是为了看清，更是为了灵魂" class="headerlink" title="1. 灯光：不仅是为了看清，更是为了灵魂"></a>1. 灯光：不仅是为了看清，更是为了灵魂</h2><p>在 3D 世界里，没有灯光就是一片漆黑。</p>
+<ul>
+<li><strong>三点布光法 (Classic 3-Point Lighting)</strong>：</li>
+</ul>
+<ol>
+<li><strong>主灯 (Key Light)</strong>：最强的光源，决定物体的基本形状和阴影方向。</li>
+<li><strong>补灯 (Fill Light)</strong>：放在主灯对面，亮度较低，用来照亮阴影区域，不至于让背光处全黑。</li>
+<li><strong>轮廓灯 (Rim&#x2F;Back Light)</strong>：放在物体后方，勾勒出物体的边缘，将物体从背景中“抠”出来。</li>
+</ol>
+<ul>
+<li><strong>HDR 环境 (Sky + HDRI)</strong>：给场景加一个“天空”，并赋予一个 HDRI 贴图。它能提供 360 度的真实环境反射（比如金属表面的城市倒影）。</li>
+<li><strong>区域灯 (Area Light)</strong>：进阶最常用的灯光类型，模拟现实中的柔光箱。</li>
+</ul>
+<hr>
+<h2 id="2-材质通道：拆解质感的成分"><a href="#2-材质通道：拆解质感的成分" class="headerlink" title="2. 材质通道：拆解质感的成分"></a>2. 材质通道：拆解质感的成分</h2><p>在 C4D 原生材质球中，每一个标签页代表一种物理属性：</p>
+<ul>
+<li><p><strong>颜色 (Color)</strong>：物体的固有色。</p>
+</li>
+<li><p><strong>反射 (Reflectance)</strong>：最重要的频道。</p>
+</li>
+<li><p><strong>粗糙度 (Roughness)</strong>：0% 是镜子，100% 是磨砂。</p>
+</li>
+<li><p><strong>菲涅尔 (Fresnel)</strong>：真实感的核心。它决定了你观察物体的角度不同，反射强度也不同（想想湖面，远看反光强，近看能看到水底）。</p>
+</li>
+<li><p><strong>凹凸 (Bump) vs 法线 (Normal)</strong>：</p>
+</li>
+<li><p>都是“欺骗”眼睛的方法。不增加模型面数，却能做出皮肤毛孔、拉丝金属的质感。</p>
+</li>
+<li><p><strong>法线</strong>效果比凹凸更真实，支持光影变化。</p>
+</li>
+<li><p><strong>置换 (Displacement)</strong>：真正改变模型的几何形状。用于做崎岖不平的山脉或严重的磨损。需要模型有足够多的面数。</p>
+</li>
+</ul>
+<hr>
+<h2 id="3-渲染器：“冲洗相机”"><a href="#3-渲染器：“冲洗相机”" class="headerlink" title="3. 渲染器：“冲洗相机”"></a>3. 渲染器：“冲洗相机”</h2><ul>
+<li><strong>标准&#x2F;物理渲染器 (Standard&#x2F;Physical)</strong>：C4D 自带。稳定，但慢，且很难做出顶级写实效果。</li>
+<li><strong>主流第三方渲染器 (GPU Rendering)</strong>：</li>
+<li><strong>Octane (OC)</strong>：上手最快，出图漂亮，深受电商、美妆设计喜爱。</li>
+<li><strong>Redshift (RS)</strong>：速度极快，适合大场景和复杂动画，目前是行业主流。</li>
+<li><strong>Arnold</strong>：电影级画质，光影极其细腻，但速度相对较慢。</li>
+</ul>
+<hr>
+<h2 id="4-节点式材质-Node-Based-Shaders"><a href="#4-节点式材质-Node-Based-Shaders" class="headerlink" title="4. 节点式材质 (Node-Based Shaders)"></a>4. 节点式材质 (Node-Based Shaders)</h2><ul>
+<li><strong>逻辑</strong>：通过线把“纹理、噪波、混合、颜色”连在一起。</li>
+<li><strong>优势</strong>：极其灵活。可以用一张“脏迹贴图”作为蒙版，让物体的边缘生锈，而中间保持干净。</li>
+</ul>
+<hr>
+<h2 id="5-全局光照-GI-与-环境吸收-AO"><a href="#5-全局光照-GI-与-环境吸收-AO" class="headerlink" title="5. 全局光照 (GI) 与 环境吸收 (AO)"></a>5. 全局光照 (GI) 与 环境吸收 (AO)</h2><ul>
+<li><strong>全局光照 (Global Illumination)</strong>：模拟光线的二次跳跃。光照到红墙上，反射出的红光会微微照亮地板。开启它，画面瞬间真实。</li>
+<li><strong>环境吸收 (Ambient Occlusion)</strong>：在物体交接处产生“阴影缝隙”。没有它，物体看起来会像漂浮在空中。</li>
+</ul>
+<hr>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C4D/">C4D</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2026/01/18/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/" title="C4D核心基础笔记 (五) 动画"><img class="cover" src="/../images/cover/C4D-Tutorial_cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">C4D核心基础笔记 (五) 动画</div></div></a></div><div class="next-post pull-right"><a href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" title="C4D核心基础笔记 (一) 参数化对象与生成器"><img class="cover" src="/../images/cover/C4D-Tutorial_cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">C4D核心基础笔记 (一) 参数化对象与生成器</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2025/05/20/%E3%80%8A%E5%81%9AC4D%20Cinema%204D%E7%94%B5%E5%95%86%E8%A7%86%E8%A7%89%E8%AE%BE%E8%AE%A1%E6%95%99%E7%A8%8B%E3%80%8B%E7%AC%94%E8%AE%B0/" title="《做C4D Cinema 4D电商视觉设计教程》笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-20</div><div class="title">《做C4D Cinema 4D电商视觉设计教程》笔记</div></div></a></div><div><a href="/2026/01/02/C4D%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" title="C4D基础笔记"><img class="cover" src="/../images/cover/C4D-Tutorial_cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-02</div><div class="title">C4D基础笔记</div></div></a></div><div><a href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" title="C4D核心基础笔记 (一) 参数化对象与生成器"><img class="cover" src="/../images/cover/C4D-Tutorial_cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-02</div><div class="title">C4D核心基础笔记 (一) 参数化对象与生成器</div></div></a></div><div><a href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" title="C4D核心基础笔记 (二) 多边形建模"><img class="cover" src="/../images/cover/C4D-Tutorial_cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-02</div><div class="title">C4D核心基础笔记 (二) 多边形建模</div></div></a></div><div><a href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/" title="C4D核心基础笔记 (三) 运动图形"><img class="cover" src="/../images/cover/C4D-Tutorial_cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-02</div><div class="title">C4D核心基础笔记 (三) 运动图形</div></div></a></div><div><a href="/2026/01/18/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/" title="C4D核心基础笔记 (五) 动画"><img class="cover" src="/../images/cover/C4D-Tutorial_cover.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-18</div><div class="title">C4D核心基础笔记 (五) 动画</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">hiki</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%81%AF%E5%85%89%EF%BC%9A%E4%B8%8D%E4%BB%85%E6%98%AF%E4%B8%BA%E4%BA%86%E7%9C%8B%E6%B8%85%EF%BC%8C%E6%9B%B4%E6%98%AF%E4%B8%BA%E4%BA%86%E7%81%B5%E9%AD%82"><span class="toc-number">1.</span> <span class="toc-text">1. 灯光：不仅是为了看清，更是为了灵魂</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%9D%90%E8%B4%A8%E9%80%9A%E9%81%93%EF%BC%9A%E6%8B%86%E8%A7%A3%E8%B4%A8%E6%84%9F%E7%9A%84%E6%88%90%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text">2. 材质通道：拆解质感的成分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%B8%B2%E6%9F%93%E5%99%A8%EF%BC%9A%E2%80%9C%E5%86%B2%E6%B4%97%E7%9B%B8%E6%9C%BA%E2%80%9D"><span class="toc-number">3.</span> <span class="toc-text">3. 渲染器：“冲洗相机”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%8A%82%E7%82%B9%E5%BC%8F%E6%9D%90%E8%B4%A8-Node-Based-Shaders"><span class="toc-number">4.</span> <span class="toc-text">4. 节点式材质 (Node-Based Shaders)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%85%A8%E5%B1%80%E5%85%89%E7%85%A7-GI-%E4%B8%8E-%E7%8E%AF%E5%A2%83%E5%90%B8%E6%94%B6-AO"><span class="toc-number">5.</span> <span class="toc-text">5. 全局光照 (GI) 与 环境吸收 (AO)</span></a></li></ol></div></div><div class="card-widget card-post-series"><div class="item-headline"><i class="fa-solid fa-layer-group"></i><span>系列文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/18/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/" title="C4D核心基础笔记 (五) 动画"><img src="/../images/cover/C4D-Tutorial_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C4D核心基础笔记 (五) 动画"></a><div class="content"><a class="title" href="/2026/01/18/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/" title="C4D核心基础笔记 (五) 动画">C4D核心基础笔记 (五) 动画</a><time datetime="2026-01-18T15:44:24.000Z" title="发表于 2026-01-18 23:44:24">2026-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/18/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/" title="C4D核心基础笔记 (四) 材质、灯光与渲染"><img src="/../images/cover/C4D-Tutorial_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C4D核心基础笔记 (四) 材质、灯光与渲染"></a><div class="content"><a class="title" href="/2026/01/18/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/" title="C4D核心基础笔记 (四) 材质、灯光与渲染">C4D核心基础笔记 (四) 材质、灯光与渲染</a><time datetime="2026-01-18T15:44:24.000Z" title="发表于 2026-01-18 23:44:24">2026-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" title="C4D核心基础笔记 (一) 参数化对象与生成器"><img src="/../images/cover/C4D-Tutorial_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C4D核心基础笔记 (一) 参数化对象与生成器"></a><div class="content"><a class="title" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" title="C4D核心基础笔记 (一) 参数化对象与生成器">C4D核心基础笔记 (一) 参数化对象与生成器</a><time datetime="2026-01-02T09:30:24.000Z" title="发表于 2026-01-02 17:30:24">2026-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" title="C4D核心基础笔记 (二) 多边形建模"><img src="/../images/cover/C4D-Tutorial_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C4D核心基础笔记 (二) 多边形建模"></a><div class="content"><a class="title" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" title="C4D核心基础笔记 (二) 多边形建模">C4D核心基础笔记 (二) 多边形建模</a><time datetime="2026-01-02T09:30:24.000Z" title="发表于 2026-01-02 17:30:24">2026-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/" title="C4D核心基础笔记 (三) 运动图形"><img src="/../images/cover/C4D-Tutorial_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C4D核心基础笔记 (三) 运动图形"></a><div class="content"><a class="title" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/" title="C4D核心基础笔记 (三) 运动图形">C4D核心基础笔记 (三) 运动图形</a><time datetime="2026-01-02T09:30:24.000Z" title="发表于 2026-01-02 17:30:24">2026-01-02</time></div></div></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/18/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/" title="C4D核心基础笔记 (五) 动画"><img src="/../images/cover/C4D-Tutorial_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C4D核心基础笔记 (五) 动画"/></a><div class="content"><a class="title" href="/2026/01/18/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/" title="C4D核心基础笔记 (五) 动画">C4D核心基础笔记 (五) 动画</a><time datetime="2026-01-18T15:44:24.000Z" title="发表于 2026-01-18 23:44:24">2026-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/18/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/" title="C4D核心基础笔记 (四) 材质、灯光与渲染"><img src="/../images/cover/C4D-Tutorial_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C4D核心基础笔记 (四) 材质、灯光与渲染"/></a><div class="content"><a class="title" href="/2026/01/18/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/" title="C4D核心基础笔记 (四) 材质、灯光与渲染">C4D核心基础笔记 (四) 材质、灯光与渲染</a><time datetime="2026-01-18T15:44:24.000Z" title="发表于 2026-01-18 23:44:24">2026-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" title="C4D核心基础笔记 (一) 参数化对象与生成器"><img src="/../images/cover/C4D-Tutorial_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C4D核心基础笔记 (一) 参数化对象与生成器"/></a><div class="content"><a class="title" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" title="C4D核心基础笔记 (一) 参数化对象与生成器">C4D核心基础笔记 (一) 参数化对象与生成器</a><time datetime="2026-01-02T09:30:24.000Z" title="发表于 2026-01-02 17:30:24">2026-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" title="C4D核心基础笔记 (二) 多边形建模"><img src="/../images/cover/C4D-Tutorial_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C4D核心基础笔记 (二) 多边形建模"/></a><div class="content"><a class="title" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" title="C4D核心基础笔记 (二) 多边形建模">C4D核心基础笔记 (二) 多边形建模</a><time datetime="2026-01-02T09:30:24.000Z" title="发表于 2026-01-02 17:30:24">2026-01-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/" title="C4D核心基础笔记 (三) 运动图形"><img src="/../images/cover/C4D-Tutorial_cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C4D核心基础笔记 (三) 运动图形"/></a><div class="content"><a class="title" href="/2026/01/02/C4D%E6%A0%B8%E5%BF%83%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/" title="C4D核心基础笔记 (三) 运动图形">C4D核心基础笔记 (三) 运动图形</a><time datetime="2026-01-02T09:30:24.000Z" title="发表于 2026-01-02 17:30:24">2026-01-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By hiki</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="40,170,240" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
