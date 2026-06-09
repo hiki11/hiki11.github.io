@@ -1,0 +1,42 @@
+/* ============================================
+   文章标题层级样式
+   h2 = 大区分类 (如 A点道具、中路道具)
+   h3 = 具体道具 (如 A大闪、中门烟)
+   h4 = 变体丢法 (如 暗道烟、X箱给警家烟)
+   ============================================ */
+
+#post h2 {
+  display: table;
+  background: rgba(164, 216, 250, 0.18);
+  color: #1a6b8a;
+  padding: 4px 16px;
+  border-radius: 4px;
+  margin-top: 2em;
+  margin-bottom: 0.8em;
+}
+
+#post h3 {
+  display: table;
+  border-left: 5px solid #A4D8FA;
+  padding: 2px 14px;
+  color: #2a2a2a;
+  font-weight: 700;
+  margin-top: 2.5em;
+  padding-bottom: 0.5em;
+}
+
+#post h4 {
+  display: table;
+  color: #3a6b80;
+  font-weight: 600;
+  font-size: 1em;
+  margin-top: 2em;
+  padding-bottom: 0.4em;
+}
+
+#post h4::before {
+  content: "● ";
+  color: #A4D8FA;
+  font-size: 0.7em;
+  vertical-align: middle;
+}
